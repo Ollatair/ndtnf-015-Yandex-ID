@@ -1,9 +1,11 @@
+require( 'dotenv' ).config()
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const YandexStrategy = require('passport-yandex').Strategy;
 
 const app = express();
+
  
 app.set('view engine', 'ejs');
  
@@ -12,8 +14,8 @@ app.use(passport.initialize());
 app.use(passport.session());
  
 passport.use(new YandexStrategy({
-    clientID: '855883cbeec648cab3c1eb9731ddcaa3',
-    clientSecret: 'b3d6a3f20e704953bc4c5d61c7068922',
+    clientID: process.env.YANDEX_CLIENT_ID,
+    clientSecret: process.env.YANDEX_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/login/callback"
   },
   function(accessToken, refreshToken, profile, done) {
