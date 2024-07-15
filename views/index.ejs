@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Главная страница</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #444;
+    }
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 0;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a.button.profile {
+      background-color: #28a745;
+    }
+    a.button.logout {
+      background-color: #dc3545;
+    }
+    a.button:hover {
+      opacity: 0.8;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Добро пожаловать на выставку!</h1>
+    
+    <% if (user) { %>
+      <p>Здравствуйте, <strong><%= user.displayName %></strong>!</p> 
+      <% if (user.participating) { %>
+        <p>Выставка пройдет 1 сентября. Ждем вас!</p>
+      <% } else { %>
+        <p>Выставка пройдет 1 сентября. Подтвердите участие в профиле!</p>
+      <% } %>
+      <p><a class="button profile" href="/profile">Перейти в профиль</a></p>
+      <p><a class="button logout" href="/logout">Выйти</a></p>
+    <% } else { %>
+        <p>Выставка пройдет 1 сентября.<br/>Для участия зарегистрируйтесь, используя Яндекс ID.</p>
+      <a class="button" href="/login">Войти с помощью Яндекс</a>
+    <% } %>
+  </div>
+</body>
+</html>

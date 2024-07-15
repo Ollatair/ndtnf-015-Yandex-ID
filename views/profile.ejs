@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Профиль</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #444;
+    }
+    form {
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button.participate {
+      background-color: #28a745;
+    }
+    button.cancel {
+      background-color: #dc3545;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 0;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a.button.home {
+      background-color: #007bff;
+      color: #fff;
+    }
+    a.button.logout {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    a.button:hover {
+      opacity: 0.8;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Профиль пользователя</h1>
+    <p>Имя: <%= user.displayName %></p>
+    <p>Email: <%= user.emails[0].value %></p>
+    <form method="post" action="/participate">
+      <% if (user.participating) { %>
+        <button class="cancel" type="submit">Отменить участие</button>
+      <% } else { %>
+        <button class="participate" type="submit">Я участвую</button>
+      <% } %>
+    </form>
+    <p><a class="button home" href="/">На главную</a></p>
+    <p><a class="button logout" href="/logout">Выйти</a></p>
+  </div>
+</body>
+</html>
